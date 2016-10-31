@@ -18,14 +18,16 @@ command=$( echo "$line" | grep "dispatch" | awk '{print $8}')
 name=$( echo "$line" | grep "dispatch" | awk '{print $10}')
 bal=$( echo "$line" | grep "dispatch" | awk '{print $11}')
 
-echo "$sname in $hour $min $sec"
+echo "$sname in $command $name $bal"
 
 
-if [ "$command" =  "eco"]; then
+if [ "$command" =  "eco" ]; then
 
-tmux send-keys -t $sname 'econ give $name $bal' Enter
-tmux send-keys -t $sname 'broadcast &4everyone thank $name for donating to the server' Enter
+tmux send-keys -t $sname 'econ add '$name' '$bal'' Enter
+tmux send-keys -t $sname 'broadcast &4everyone thank '$name' for donating to the server' Enter
 fi
 
 fi
 done
+
+
